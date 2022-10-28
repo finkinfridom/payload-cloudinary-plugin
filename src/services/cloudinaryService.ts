@@ -4,11 +4,9 @@ import { PayloadRequest, SanitizedCollectionConfig } from "payload/types";
 
 import fs from "fs";
 import path from "path";
+import { CloudinaryPluginRequest } from "../types";
 
-export declare type CloudinaryPluginRequest = PayloadRequest & {
-    cloudinaryService: CloudinaryService;
-};
-class CloudinaryService {
+export class CloudinaryService {
     private config?: ConfigOptions;
     private options?: UploadApiOptions;
     constructor(config?: ConfigOptions, options?: UploadApiOptions) {
@@ -28,7 +26,7 @@ class CloudinaryService {
             cloud_name: this.config?.cloud_name || process.env.CLOUDINARY_CLOUD_NAME,
         });
         const { staticDir = "__tmp_media__", staticURL = "/media" } =
-            collectionConfig?.upload;
+            (collectionConfig?.upload || {});
         const staticPath = path.resolve(payload.config.paths.configDir, staticDir);
         let tmpFileName = path.join(staticPath, filename);
         const mustDeleteTempFile = collectionConfig?.upload.disableLocalStorage;
