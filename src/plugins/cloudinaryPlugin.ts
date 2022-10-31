@@ -60,7 +60,7 @@ export const mapRequiredFields = (
 };
 export const beforeChangeHook: CollectionBeforeChangeHook = async (args) => {
   const file = args.req.files?.file;
-  if (!(file && args.data.filename)) {
+  if (!(file && args.data?.filename)) {
     return;
   }
   try {

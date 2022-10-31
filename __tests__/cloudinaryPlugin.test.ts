@@ -1,11 +1,13 @@
+import { UploadApiResponse } from "cloudinary";
 import { FieldBase } from "payload/dist/fields/config/types";
-import { Field } from "payload/types";
-import { cloudinaryPlugin } from "../src";
+import { PayloadRequest } from "payload/types";
+import { cloudinaryPlugin, CloudinaryPluginRequest } from "../src";
 import {
+  beforeChangeHook,
   getPartialField,
   mapRequiredFields,
 } from "../src/plugins/cloudinaryPlugin";
-
+import { CloudinaryService } from "../src/services/cloudinaryService";
 describe("cloudinaryPlugin", () => {
   it("config with empty collections should not throw exception", () => {
     const plugin = cloudinaryPlugin();
@@ -59,6 +61,48 @@ describe("cloudinaryPlugin", () => {
       expect(expected.filter((item) => item.type === "checkbox")).toHaveLength(
         1
       );
+    });
+  });
+  describe("hooks", () => {
+    let spyUpload;
+    beforeAll(() => {
+      spyUpload = jest
+        .spyOn(CloudinaryService.prototype, "upload")
+        .mockImplementation();
+    });
+
+    afterAll(() => {
+      jest.restoreAllMocks();
+    });
+    it("'beforeChangeHook' should return undefined for invalid inputs", async () => {
+      expect(
+        await beforeChangeHook({
+          req: {} as PayloadRequest<any>,
+          data: {} as Partial<any>,
+          operation: "create",
+        })
+      ).toBeUndefined();
+      expect(
+        await beforeChangeHook({
+          req: { files: [] as unknown } as PayloadRequest<any>,
+          data: { filename: null } as Partial<any>,
+          operation: "create",
+        })
+      ).toBeUndefined();
+    });
+    it("'beforeChangeHook' should execute 'upload' method", async () => {
+      const cloudinaryService = new CloudinaryService();
+      await beforeChangeHook({
+        req: {
+          cloudinaryService,
+          files: {
+            file: Buffer.from("sample"),
+          } as unknown,
+        } as CloudinaryPluginRequest,
+        data: { filename: "sample-file.png" } as Partial<any>,
+        operation: "create",
+      });
+      expect(spyUpload).toBeCalledTimes(1);
     });
   });
 });
