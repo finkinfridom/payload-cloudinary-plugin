@@ -95,7 +95,7 @@ export const afterDeleteHook: CollectionAfterDeleteHook = async ({
     throw new APIError(`Cloudinary: ${JSON.stringify(e)}`);
   }
 };
-export const afterReadHook: CollectionAfterReadHook = async ({ doc }) => {
+export const afterReadHook: CollectionAfterReadHook = ({ doc }) => {
   const newDoc = {
     ...doc,
     original_doc: {

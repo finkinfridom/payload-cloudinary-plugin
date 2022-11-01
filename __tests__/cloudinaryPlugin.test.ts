@@ -4,6 +4,7 @@ import { PayloadRequest } from "payload/types";
 import { cloudinaryPlugin, CloudinaryPluginRequest } from "../src";
 import {
   afterDeleteHook,
+  afterReadHook,
   beforeChangeHook,
   getPartialField,
   GROUP_NAME,
@@ -134,6 +135,25 @@ describe("cloudinaryPlugin", () => {
           id: "sample-id",
         });
         expect(spyDelete).toBeCalledTimes(1);
+      });
+    });
+    describe("afterReadHook", () => {
+      it("should extend input 'doc'", () => {
+        const doc = {
+          url: "http://localhost:5000/media/sample-local.jpg",
+          filename: "sample-local.jpg",
+        };
+        doc[GROUP_NAME] = {
+          secure_url: "https://res.cloudinary.com/sample-public-id.jpg",
+          public_id: "sample-public-id",
+        };
+        const result = afterReadHook({
+          doc: doc,
+          req: {} as any,
+        });
+        expect(result).toHaveProperty("original_doc");
+        expect(result.url).toBe(doc[GROUP_NAME].secure_url);
+        expect(result.filename).toBe(doc[GROUP_NAME].public_id);
       });
     });
   });
