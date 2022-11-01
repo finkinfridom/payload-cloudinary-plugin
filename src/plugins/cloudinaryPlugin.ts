@@ -12,7 +12,7 @@ import {
 
 import { CloudinaryPluginRequest, PluginConfig } from "../types";
 
-const GROUP_NAME = "cloudinary";
+export const GROUP_NAME = "cloudinary";
 export const DEFAULT_REQUIRED_FIELDS = [
   { name: "public_id", label: "Public ID" },
   { name: "original_filename", label: "Original filename" },

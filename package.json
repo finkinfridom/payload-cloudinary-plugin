@@ -10,6 +10,7 @@
     "dev": "tsc --watch",
     "build": "tsc",
     "test": "jest",
+    "test:watch": "jest --watch",
     "serve:cov": "serve coverage -c ../serve.json"
   },
   "dependencies": {

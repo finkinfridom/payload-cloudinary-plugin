@@ -3,8 +3,10 @@ import { FieldBase } from "payload/dist/fields/config/types";
 import { PayloadRequest } from "payload/types";
 import { cloudinaryPlugin, CloudinaryPluginRequest } from "../src";
 import {
+  afterDeleteHook,
   beforeChangeHook,
   getPartialField,
+  GROUP_NAME,
   mapRequiredFields,
 } from "../src/plugins/cloudinaryPlugin";
 import { CloudinaryService } from "../src/services/cloudinaryService";
@@ -65,44 +67,74 @@ describe("cloudinaryPlugin", () => {
   });
   describe("hooks", () => {
     let spyUpload;
+    let spyDelete;
     beforeAll(() => {
       spyUpload = jest
         .spyOn(CloudinaryService.prototype, "upload")
+        .mockImplementation();
+      spyDelete = jest
+        .spyOn(CloudinaryService.prototype, "delete")
         .mockImplementation();
     });
 
     afterAll(() => {
       jest.restoreAllMocks();
     });
-    it("'beforeChangeHook' should return undefined for invalid inputs", async () => {
-      expect(
-        await beforeChangeHook({
-          req: {} as PayloadRequest<any>,
-          data: {} as Partial<any>,
-          operation: "create",
-        })
-      ).toBeUndefined();
-      expect(
-        await beforeChangeHook({
-          req: { files: [] as unknown } as PayloadRequest<any>,
-          data: { filename: null } as Partial<any>,
-          operation: "create",
-        })
-      ).toBeUndefined();
-    });
-    it("'beforeChangeHook' should execute 'upload' method", async () => {
-      const cloudinaryService = new CloudinaryService();
-      await beforeChangeHook({
-        req: {
-          cloudinaryService,
-          files: {
-            file: Buffer.from("sample"),
-          } as unknown,
-        } as CloudinaryPluginRequest,
-        data: { filename: "sample-file.png" } as Partial<any>,
-        operation: "create",
+    describe("beforeChangeHook", () => {
+      it("should return undefined for invalid inputs", async () => {
+        expect(
+          await beforeChangeHook({
+            req: {} as PayloadRequest<any>,
+            data: {} as Partial<any>,
+            operation: "create",
+          })
+        ).toBeUndefined();
+        expect(
+          await beforeChangeHook({
+            req: { files: [] as unknown } as PayloadRequest<any>,
+            data: { filename: null } as Partial<any>,
+            operation: "create",
+          })
+        ).toBeUndefined();
       });
-      expect(spyUpload).toBeCalledTimes(1);
+      it("should execute 'upload' method", async () => {
+        const cloudinaryService = new CloudinaryService();
+        await beforeChangeHook({
+          req: {
+            cloudinaryService,
+            files: {
+              file: Buffer.from("sample"),
+            } as unknown,
+          } as CloudinaryPluginRequest,
+          data: { filename: "sample-file.png" } as Partial<any>,
+          operation: "create",
+        });
+        expect(spyUpload).toBeCalledTimes(1);
+      });
+    });
+    describe("afterDeleteHook", () => {
+      it("should return undefined for invalid inputs", async () => {
+        expect(
+          await afterDeleteHook({
+            req: {} as PayloadRequest<any>,
+            doc: {} as any,
+            id: "sample-id",
+          })
+        ).toBeUndefined();
+      });
+      it("should execute 'delete' method", async () => {
+        const cloudinaryService = new CloudinaryService();
+        const doc = {};
+        doc[GROUP_NAME] = { public_id: "sample-public-id" };
+        await afterDeleteHook({
+          req: {
+            cloudinaryService,
+          } as CloudinaryPluginRequest,
+          doc: doc,
+          id: "sample-id",
+        });
+        expect(spyDelete).toBeCalledTimes(1);
+      });
     });
   });
 });
