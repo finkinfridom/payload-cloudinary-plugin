@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/finkinfridom/payload-auth0-plugin.git",
+  "repository": "https://github.com/finkinfridom/payload-cloudinary-plugin.git",
   "author": "a.maghini@gmail.com",
   "license": "MIT",
   "files": [
