@@ -104,3 +104,4 @@ dist
 .tern-port
 .DS_Store
 test_usage
+__tmp_media__
