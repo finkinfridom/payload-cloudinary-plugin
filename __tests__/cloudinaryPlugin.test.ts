@@ -1,4 +1,3 @@
-import { UploadApiResponse } from "cloudinary";
 import { FieldBase } from "payload/dist/fields/config/types";
 import { PayloadRequest } from "payload/types";
 import cloudinaryPlugin from "../src/plugins";
