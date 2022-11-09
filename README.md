@@ -27,3 +27,18 @@ export default buildConfig({
     ....
 })
 ```
+
+### mediaManagement function
+
+```js
+function mediaManagement(
+  config?: ConfigOptions,
+  uploadApiOptions?: UploadApiOptions,
+  uploadResourceTypeHandler?: Function
+)
+```
+
+The function may receive a `ConfigOptions` and a `UploadApiOptions` from `cloudinary` package.
+Additionally, you can specify a `uploadResourceTypeHandler` to manage which `resource_type` parameter must be passed to `cloudinary.upload` (see here: https://cloudinary.com/documentation/image_upload_api_reference#upload_optional_parameters for additional information).
+
+If the `uploadResourceTypeHandler` is NOT specified, `resource_type: auto` will be passed to upload method.
