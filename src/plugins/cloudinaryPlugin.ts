@@ -14,9 +14,11 @@ import { CloudinaryPluginRequest, PluginConfig } from "../types";
 
 export const GROUP_NAME = "cloudinary";
 export const DEFAULT_REQUIRED_FIELDS = [
-  { name: "public_id", label: "Public ID" },
+  { name: "public_id", label: "Public ID", required: true },
   { name: "original_filename", label: "Original filename" },
+  { name: "format", label: "Format" },
   { name: "secure_url", label: "URL" },
+  { name: "resource_type", label: "Resource Type", required: true },
 ];
 
 const setCloudinaryField = (inputField: Partial<Field> | string): Field => {
@@ -80,6 +82,7 @@ export const beforeChangeHook: CollectionBeforeChangeHook = async (args) => {
     throw new APIError(`Cloudinary: ${JSON.stringify(e)}`);
   }
 };
+
 export const afterDeleteHook: CollectionAfterDeleteHook = async ({
   req,
   doc,
@@ -88,8 +91,12 @@ export const afterDeleteHook: CollectionAfterDeleteHook = async ({
     return;
   }
   try {
+    const apiResponse = doc[GROUP_NAME] as UploadApiResponse;
     await (req as CloudinaryPluginRequest).cloudinaryService.delete(
-      (doc[GROUP_NAME] as UploadApiResponse).public_id
+      apiResponse.public_id,
+      {
+        resource_type: apiResponse.resource_type,
+      }
     );
   } catch (e) {
     throw new APIError(`Cloudinary: ${JSON.stringify(e)}`);
