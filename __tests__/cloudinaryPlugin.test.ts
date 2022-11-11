@@ -1,4 +1,4 @@
-import { FieldBase } from "payload/dist/fields/config/types";
+import { Field, FieldBase } from "payload/dist/fields/config/types";
 import { PayloadRequest } from "payload/types";
 import cloudinaryPlugin from "../src/plugins";
 import { CloudinaryPluginRequest } from "../src";
@@ -37,18 +37,18 @@ describe("cloudinaryPlugin", () => {
     });
     it("should return DEFAULT_REQUIRED_FIELDS", () => {
       const expected = mapRequiredFields();
-      expect(expected.length).toBe(3);
+      expect(expected.length).toBe(5);
       expect(
-        expected.find((item) => (item as FieldBase).name === "public_id")
-      ).not.toBeNull();
-      expect(
-        expected.find(
-          (item) => (item as FieldBase).name === "original_filename"
-        )
-      ).not.toBeNull();
-      expect(
-        expected.find((item) => (item as FieldBase).name === "secure_url")
-      ).not.toBeNull();
+        JSON.stringify(expected.map((i) => (i as FieldBase).name).sort())
+      ).toBe(
+        JSON.stringify([
+          "format",
+          "original_filename",
+          "public_id",
+          "resource_type",
+          "secure_url",
+        ])
+      );
     });
     it("should set 'number' field on numeric fields", () => {
       const expected = mapRequiredFields([
