@@ -14,11 +14,11 @@ import { CloudinaryPluginRequest, PluginConfig } from "../types";
 
 export const GROUP_NAME = "cloudinary";
 export const DEFAULT_REQUIRED_FIELDS = [
-  { name: "public_id", label: "Public ID", required: true },
+  { name: "public_id", label: "Public ID" },
   { name: "original_filename", label: "Original filename" },
   { name: "format", label: "Format" },
   { name: "secure_url", label: "URL" },
-  { name: "resource_type", label: "Resource Type", required: true },
+  { name: "resource_type", label: "Resource Type" },
 ];
 
 const setCloudinaryField = (inputField: Partial<Field> | string): Field => {
