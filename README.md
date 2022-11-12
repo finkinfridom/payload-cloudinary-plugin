@@ -2,6 +2,14 @@
 
 Extends `payloadcms` with Cloudinary integration
 
+## Current status
+
+![codeql](https://github.com/finkinfridom/payload-cloudinary-plugin/actions/workflows/codeql.yml/badge.svg)
+
+![test](https://github.com/finkinfridom/payload-cloudinary-plugin/actions/workflows/test.yml/badge.svg)
+
+![publish](https://github.com/finkinfridom/payload-cloudinary-plugin/actions/workflows/publish.yml/badge.svg)
+
 ## Install
 
 `yarn add payload-cloudinary-plugin`
