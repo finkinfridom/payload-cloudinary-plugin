@@ -14,9 +14,11 @@ const staticDir = "__tmp_media__";
 describe("cloudinaryService", () => {
   let spyDelete;
   beforeAll(() => {
-    fs.rmdirSync(staticDir, {
-      recursive: true,
-    });
+    if (fs.existsSync(staticDir)) {
+      fs.rmdirSync(staticDir, {
+        recursive: true,
+      });
+    }
     jest.spyOn(cloudinary.uploader, "upload").mockResolvedValue({
       public_id: "test-12345",
     } as any);
