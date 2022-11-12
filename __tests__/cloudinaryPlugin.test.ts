@@ -1,6 +1,7 @@
-import { Field, FieldBase } from "payload/dist/fields/config/types";
+import { FieldBase, GroupField } from "payload/dist/fields/config/types";
 import { PayloadRequest } from "payload/types";
 import cloudinaryPlugin from "../src/plugins";
+import { Plugin } from "payload/config";
 import { CloudinaryPluginRequest } from "../src";
 import {
   afterDeleteHook,
@@ -11,10 +12,135 @@ import {
   mapRequiredFields,
 } from "../src/plugins/cloudinaryPlugin";
 import { CloudinaryService } from "../src/services/cloudinaryService";
+import { CollectionConfig } from "payload/dist/collections/config/types";
+import {
+  GetAdminThumbnail,
+  IncomingUploadType,
+} from "payload/dist/uploads/types";
+import { UploadApiResponse } from "cloudinary";
 describe("cloudinaryPlugin", () => {
+  let plugin: Plugin;
+  const defaultFieldsAsJson = JSON.stringify([
+    "format",
+    "original_filename",
+    "public_id",
+    "resource_type",
+    "secure_url",
+  ]);
+  beforeEach(() => {
+    plugin = cloudinaryPlugin();
+  });
   it("config with empty collections should not throw exception", () => {
-    const plugin = cloudinaryPlugin();
     expect(() => plugin({})).not.toThrowError();
+  });
+  it("config with no 'upload' collection, should return same", () => {
+    const config = plugin({
+      collections: [{ slug: "sample-collection", fields: [] }],
+    });
+    const collection = config.collections
+      ? config.collections[0]
+      : ({} as Partial<CollectionConfig>);
+    expect(collection.fields).toHaveLength(0);
+    expect(collection.hooks).toBeUndefined();
+  });
+  it("config with 'upload' collection should return modified collection", () => {
+    const config = plugin({
+      collections: [
+        {
+          slug: "sample-collection",
+          fields: [],
+          upload: true,
+        },
+      ],
+    });
+    const collection = config.collections
+      ? config.collections[0]
+      : ({} as Partial<CollectionConfig>);
+    expect(collection.hooks).not.toBeUndefined();
+    expect(collection.hooks?.beforeChange).toHaveLength(1);
+    expect(collection.hooks?.afterRead).toHaveLength(1);
+    expect(collection.hooks?.afterDelete).toHaveLength(1);
+  });
+  it("config with 'upload' collection with 'hooks' should return modified collection", () => {
+    const config = plugin({
+      collections: [
+        {
+          slug: "sample-collection",
+          fields: [],
+          upload: true,
+          hooks: {
+            beforeChange: [function () {}],
+            afterDelete: [function () {}],
+            afterRead: [function () {}],
+          },
+        },
+      ],
+    });
+    const collection = config.collections
+      ? config.collections[0]
+      : ({} as Partial<CollectionConfig>);
+    const fields = collection.fields || [];
+    const groupedFields = fields.find(
+      (f) => (f as FieldBase).name === GROUP_NAME
+    ) as GroupField;
+
+    expect(groupedFields).not.toBeUndefined();
+    expect(groupedFields.fields).toHaveLength(5);
+    expect(
+      JSON.stringify(
+        groupedFields.fields.map((i) => (i as FieldBase).name).sort()
+      )
+    ).toBe(defaultFieldsAsJson);
+    expect(collection.hooks?.beforeChange).toHaveLength(2);
+    expect(collection.hooks?.afterRead).toHaveLength(2);
+    expect(collection.hooks?.afterDelete).toHaveLength(2);
+    const adminThumbnail = (collection.upload as IncomingUploadType)
+      .adminThumbnail as GetAdminThumbnail;
+    expect(adminThumbnail).not.toBeUndefined();
+    if (adminThumbnail) {
+      expect(
+        adminThumbnail({
+          doc: {
+            [GROUP_NAME]: {
+              secure_url: "https://my-img.com/1234.png",
+            } as UploadApiResponse,
+          } as Record<string, unknown>,
+        })
+      ).toBe("https://my-img.com/1234.png");
+      expect(
+        adminThumbnail({
+          doc: {
+            anyField: 1,
+          } as Record<string, unknown>,
+        })
+      ).toBeUndefined();
+    }
+  });
+  it("plugin with config should return additional fields", () => {
+    const enrichedPlugin = cloudinaryPlugin({
+      cloudinaryFields: ["my-custom-field"],
+    });
+    const config = enrichedPlugin({
+      collections: [
+        {
+          slug: "sample-collection",
+          fields: [],
+          upload: true,
+        },
+      ],
+    });
+    const collection = config.collections
+      ? config.collections[0]
+      : ({} as Partial<CollectionConfig>);
+    const groupedFields = collection.fields?.find(
+      (f) => (f as FieldBase).name === GROUP_NAME
+    ) as GroupField;
+    expect(groupedFields.fields).toHaveLength(6);
+    expect(
+      groupedFields.fields.find(
+        (f) => (f as FieldBase).name === "my-custom-field"
+      )
+    ).not.toBeUndefined();
   });
   it("getPartialField should enrich string", () => {
     expect(getPartialField("sample-field")).toHaveProperty(
@@ -40,15 +166,7 @@ describe("cloudinaryPlugin", () => {
       expect(expected.length).toBe(5);
       expect(
         JSON.stringify(expected.map((i) => (i as FieldBase).name).sort())
-      ).toBe(
-        JSON.stringify([
-          "format",
-          "original_filename",
-          "public_id",
-          "resource_type",
-          "secure_url",
-        ])
-      );
+      ).toBe(defaultFieldsAsJson);
     });
     it("should set 'number' field on numeric fields", () => {
       const expected = mapRequiredFields([
@@ -92,7 +210,25 @@ describe("cloudinaryPlugin", () => {
         ).toBeUndefined();
         expect(
           await beforeChangeHook({
-            req: { files: [] as unknown } as PayloadRequest<any>,
+            req: { files: {} as unknown } as PayloadRequest<any>,
+            data: { filename: null } as Partial<any>,
+            operation: "create",
+          })
+        ).toBeUndefined();
+        expect(
+          await beforeChangeHook({
+            req: {
+              files: { file: "sample-file.jpg" } as unknown,
+            } as PayloadRequest<any>,
+            data: null as unknown as Partial<any>,
+            operation: "create",
+          })
+        ).toBeUndefined();
+        expect(
+          await beforeChangeHook({
+            req: {
+              files: { file: "sample-file.jpg" } as unknown,
+            } as PayloadRequest<any>,
             data: { filename: null } as Partial<any>,
             operation: "create",
           })
@@ -106,11 +242,22 @@ describe("cloudinaryPlugin", () => {
             files: {
               file: Buffer.from("sample"),
             } as unknown,
+            collection: { config: plugin({}) },
           } as CloudinaryPluginRequest,
           data: { filename: "sample-file.png" } as Partial<any>,
           operation: "create",
         });
-        expect(spyUpload).toBeCalledTimes(1);
+        await beforeChangeHook({
+          req: {
+            cloudinaryService,
+            files: {
+              file: Buffer.from("sample"),
+            } as unknown,
+          } as CloudinaryPluginRequest,
+          data: { filename: "sample-file.png" } as Partial<any>,
+          operation: "create",
+        });
+        expect(spyUpload).toBeCalledTimes(2);
       });
     });
     describe("afterDeleteHook", () => {

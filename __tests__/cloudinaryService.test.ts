@@ -1,13 +1,18 @@
-import { CloudinaryService } from "../src/services/cloudinaryService";
+import {
+  CloudinaryService,
+  mediaManagement,
+} from "../src/services/cloudinaryService";
 import payload from "payload";
 import { buildConfig } from "payload/dist/config/build";
 import path from "path";
 import fs from "fs";
 import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
+import { CloudinaryPluginRequest } from "../src";
 jest.mock("cloudinary");
 jest.mock("payload");
 const staticDir = "__tmp_media__";
 describe("cloudinaryService", () => {
+  let spyDelete;
   beforeAll(() => {
     fs.rmdirSync(staticDir, {
       recursive: true,
@@ -15,6 +20,7 @@ describe("cloudinaryService", () => {
     jest.spyOn(cloudinary.uploader, "upload").mockResolvedValue({
       public_id: "test-12345",
     } as any);
+    spyDelete = jest.spyOn(cloudinary.uploader, "destroy").mockImplementation();
   });
   let service = new CloudinaryService();
   let payloadConfig = buildConfig({
@@ -47,6 +53,20 @@ describe("cloudinaryService", () => {
       expect(response.public_id).toBe("test-12345");
       const files = fs.readdirSync(testStaticDir);
       expect(files).toHaveLength(0);
+    });
+  });
+  describe("delete", () => {
+    it("should execute 'destroy' method", async () => {
+      await service.delete("12356.png");
+      expect(spyDelete).toBeCalledTimes(1);
+    });
+  });
+  describe("mediaManagement", () => {
+    it("should return enriched req", () => {
+      const handler = mediaManagement();
+      const req = {} as CloudinaryPluginRequest;
+      handler(req, {}, () => {});
+      expect(req.cloudinaryService).not.toBeUndefined();
     });
   });
 });
