@@ -15,7 +15,8 @@
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
-    "serve:cov": "serve coverage -c ../serve.json"
+    "serve:cov": "serve coverage -c ../serve.json",
+    "push:cov": "yarn test && docker run -v $PWD:/code codacy/codacy-coverage-reporter report --coverage-reports /code/coverage/lcov.info"
   },
   "dependencies": {
     "cloudinary": "^1.32.0",
