@@ -1,6 +1,6 @@
 {
   "name": "payload-cloudinary-plugin",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/finkinfridom/payload-cloudinary-plugin.git",
@@ -10,6 +10,7 @@
     "dist"
   ],
   "scripts": {
+    "version:show": "cat package.json | grep version",
     "dev": "tsc --watch",
     "build": "tsc",
     "test": "jest",
