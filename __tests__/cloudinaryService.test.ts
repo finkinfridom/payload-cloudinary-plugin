@@ -21,11 +21,11 @@ describe("cloudinaryService", () => {
     }
     jest.spyOn(cloudinary.uploader, "upload").mockResolvedValue({
       public_id: "test-12345",
-    } as any);
+    } as UploadApiResponse);
     spyDelete = jest.spyOn(cloudinary.uploader, "destroy").mockImplementation();
   });
-  let service = new CloudinaryService();
-  let payloadConfig = buildConfig({
+  const service = new CloudinaryService();
+  const payloadConfig = buildConfig({
     collections: [],
   });
   describe("upload", () => {

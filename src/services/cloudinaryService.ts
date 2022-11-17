@@ -32,7 +32,7 @@ export class CloudinaryService {
     payload: Payload,
     collectionConfig?: SanitizedCollectionConfig
   ): Promise<UploadApiResponse> {
-    let _cfg = {
+    const _cfg = {
       ...this.config,
       api_key: this.config?.api_key || process.env.CLOUDINARY_API_KEY,
       api_secret: this.config?.api_secret || process.env.CLOUDINARY_API_SECRET,
