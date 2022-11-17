@@ -10,6 +10,8 @@ Extends `payloadcms` with Cloudinary integration
 
 ![publish](https://github.com/finkinfridom/payload-cloudinary-plugin/actions/workflows/publish.yml/badge.svg)
 
+[![GitHub Super-Linter](https://github.com/finkinfridom/payload-cloudinary-plugin/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ## Install
 
 `yarn add payload-cloudinary-plugin`
