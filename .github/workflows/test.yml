@@ -1,4 +1,4 @@
-name: Run tests
+name: Run tests and push coverage
 on:
   push:
     branches: ["main"]
@@ -16,4 +16,4 @@ jobs:
           node-version: "16.x"
           registry-url: "https://registry.npmjs.org"
       - run: yarn
-      - run: yarn test
+      - run: yarn push:cov --project-token ${{ secrets.CODACY_PROJECT_TOKEN }}
