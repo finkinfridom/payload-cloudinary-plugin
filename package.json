@@ -19,6 +19,9 @@
     "lint": "eslint . --ext .ts",
     "push:cov": "yarn test && docker run -v $PWD:/code codacy/codacy-coverage-reporter report --coverage-reports /code/coverage/lcov.info"
   },
+  "engines": {
+    "node": ">=8.3.0"
+  },
   "dependencies": {
     "cloudinary": "^1.32.0",
     "dotenv": "^16.0.3",
