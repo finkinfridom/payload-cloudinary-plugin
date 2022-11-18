@@ -47,7 +47,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TYPESCRIPT_ES_CONFIG_FILE: ~/.eslintrc.json
+          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
           TYPESCRIPT_DEFAULT_STYLE: prettier
           USE_FIND_ALGORITHM: true
-          LINTER_RULES_PATH: ${{ github.workspace }}
+          LINTER_RULES_PATH: /
