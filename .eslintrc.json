@@ -8,7 +8,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "no-console": 2, // Remember, this means error!
+    "no-console": 2,
     "@typescript-eslint/no-empty-function": 1,
     "@typescript-eslint/ban-types": 1
   },
