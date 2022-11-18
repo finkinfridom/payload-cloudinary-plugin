@@ -10,7 +10,6 @@ name: Lint Code Base
 # Start the job on all push #
 #############################
 on:
-  push:
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -48,3 +47,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
+          TYPESCRIPT_DEFAULT_STYLE: prettier
+          USE_FIND_ALGORITHM: true
+          LINTER_RULES_PATH: /
