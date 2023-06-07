@@ -49,5 +49,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
           TYPESCRIPT_DEFAULT_STYLE: prettier
+          VALIDATE_JSCPD: false
           USE_FIND_ALGORITHM: true
           LINTER_RULES_PATH: /
