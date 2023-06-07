@@ -31,10 +31,10 @@ describe("cloudinaryPlugin", () => {
     plugin = cloudinaryPlugin();
   });
   it("config with empty collections should not throw exception", () => {
-    expect(() => plugin({})).not.toThrowError();
+    expect(async () => await plugin({})).not.toThrowError();
   });
-  it("config with no 'upload' collection, should return same", () => {
-    const config = plugin({
+  it("config with no 'upload' collection, should return same", async () => {
+    const config = await plugin({
       collections: [{ slug: "sample-collection", fields: [] }],
     });
     const collection = config.collections
@@ -43,8 +43,8 @@ describe("cloudinaryPlugin", () => {
     expect(collection.fields).toHaveLength(0);
     expect(collection.hooks).toBeUndefined();
   });
-  it("config with 'upload' collection should return modified collection", () => {
-    const config = plugin({
+  it("config with 'upload' collection should return modified collection", async () => {
+    const config = await plugin({
       collections: [
         {
           slug: "sample-collection",
@@ -61,8 +61,8 @@ describe("cloudinaryPlugin", () => {
     expect(collection.hooks?.afterRead).toHaveLength(1);
     expect(collection.hooks?.afterDelete).toHaveLength(1);
   });
-  it("config with 'upload' collection with 'hooks' should return modified collection", () => {
-    const config = plugin({
+  it("config with 'upload' collection with 'hooks' should return modified collection", async () => {
+    const config = await plugin({
       collections: [
         {
           slug: "sample-collection",
@@ -116,11 +116,11 @@ describe("cloudinaryPlugin", () => {
       ).toBeUndefined();
     }
   });
-  it("plugin with config should return additional fields", () => {
+  it("plugin with config should return additional fields", async () => {
     const enrichedPlugin = cloudinaryPlugin({
       cloudinaryFields: ["my-custom-field"],
     });
-    const config = enrichedPlugin({
+    const config = await enrichedPlugin({
       collections: [
         {
           slug: "sample-collection",

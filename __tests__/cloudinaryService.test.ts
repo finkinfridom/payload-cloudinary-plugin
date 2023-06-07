@@ -29,8 +29,8 @@ describe("cloudinaryService", () => {
     collections: [],
   });
   describe("upload", () => {
-    beforeAll(() => {
-      payload.config = payloadConfig;
+    beforeAll(async () => {
+      payload.config = await payloadConfig;
       payload.config.paths = {
         ...payload.config.paths,
         configDir: path.dirname("."),
