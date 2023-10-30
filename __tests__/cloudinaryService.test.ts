@@ -10,6 +10,7 @@ import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
 import { CloudinaryPluginRequest } from "../src";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
+import { Config } from "payload/config";
 jest.mock("cloudinary");
 jest.mock("payload");
 const staticDir = "__tmp_media__";
@@ -18,7 +19,7 @@ describe("cloudinaryService", () => {
   const baseConfig = {
     db: mongooseAdapter({ url: "" }),
     editor: slateEditor({}),
-  };
+  } as Config;
   beforeAll(() => {
     if (fs.existsSync(staticDir)) {
       fs.rmdirSync(staticDir, {

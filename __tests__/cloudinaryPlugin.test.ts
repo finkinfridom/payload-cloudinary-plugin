@@ -29,7 +29,7 @@ describe("cloudinaryPlugin", () => {
   const baseConfig = {
     db: mongooseAdapter({ url: "" }),
     editor: slateEditor({}),
-  };
+  } as Config;
   const defaultFieldsAsJson = JSON.stringify([
     "format",
     "original_filename",
