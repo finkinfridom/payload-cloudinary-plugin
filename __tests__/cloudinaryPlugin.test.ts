@@ -18,6 +18,7 @@ import {
   IncomingUploadType,
 } from "payload/dist/uploads/types";
 import { UploadApiResponse } from "cloudinary";
+import { RequestContext } from "payload";
 describe("cloudinaryPlugin", () => {
   let plugin: Plugin;
   const defaultFieldsAsJson = JSON.stringify([
@@ -27,6 +28,7 @@ describe("cloudinaryPlugin", () => {
     "resource_type",
     "secure_url",
   ]);
+  const reqContext = {} as RequestContext;
   beforeEach(() => {
     plugin = cloudinaryPlugin();
   });
@@ -206,6 +208,7 @@ describe("cloudinaryPlugin", () => {
             req: {} as PayloadRequest<any>,
             data: {} as Partial<any>,
             operation: "create",
+            context: reqContext,
           })
         ).toBeUndefined();
         expect(
@@ -213,6 +216,7 @@ describe("cloudinaryPlugin", () => {
             req: { files: {} as unknown } as PayloadRequest<any>,
             data: { filename: null } as Partial<any>,
             operation: "create",
+            context: reqContext,
           })
         ).toBeUndefined();
         expect(
@@ -222,6 +226,7 @@ describe("cloudinaryPlugin", () => {
             } as PayloadRequest<any>,
             data: null as unknown as Partial<any>,
             operation: "create",
+            context: reqContext,
           })
         ).toBeUndefined();
         expect(
@@ -231,6 +236,7 @@ describe("cloudinaryPlugin", () => {
             } as PayloadRequest<any>,
             data: { filename: null } as Partial<any>,
             operation: "create",
+            context: reqContext,
           })
         ).toBeUndefined();
       });
@@ -246,6 +252,7 @@ describe("cloudinaryPlugin", () => {
           } as CloudinaryPluginRequest,
           data: { filename: "sample-file.png" } as Partial<any>,
           operation: "create",
+          context: reqContext,
         });
         await beforeChangeHook({
           req: {
@@ -256,6 +263,7 @@ describe("cloudinaryPlugin", () => {
           } as CloudinaryPluginRequest,
           data: { filename: "sample-file.png" } as Partial<any>,
           operation: "create",
+          context: reqContext,
         });
         expect(spyUpload).toBeCalledTimes(2);
       });
@@ -267,6 +275,7 @@ describe("cloudinaryPlugin", () => {
             req: {} as PayloadRequest<any>,
             doc: {} as any,
             id: "sample-id",
+            context: reqContext,
           })
         ).toBeUndefined();
       });
@@ -280,6 +289,7 @@ describe("cloudinaryPlugin", () => {
           } as CloudinaryPluginRequest,
           doc: doc,
           id: "sample-id",
+          context: reqContext,
         });
         expect(spyDelete).toBeCalledTimes(1);
       });
@@ -297,6 +307,7 @@ describe("cloudinaryPlugin", () => {
         const result = afterReadHook({
           doc: doc,
           req: {} as any,
+          context: reqContext,
         });
         expect(result).toHaveProperty("original_doc");
         expect(result.url).toBe(doc[GROUP_NAME].secure_url);
