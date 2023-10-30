@@ -1,8 +1,10 @@
 import { FieldBase, GroupField } from "payload/dist/fields/config/types";
 import { PayloadRequest } from "payload/types";
 import cloudinaryPlugin from "../src/plugins";
-import { Plugin } from "payload/config";
+import { Config, Plugin } from "payload/config";
 import { CloudinaryPluginRequest } from "../src";
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { slateEditor } from "@payloadcms/richtext-slate";
 import {
   afterDeleteHook,
   afterReadHook,
@@ -12,7 +14,10 @@ import {
   mapRequiredFields,
 } from "../src/plugins/cloudinaryPlugin";
 import { CloudinaryService } from "../src/services/cloudinaryService";
-import { CollectionConfig } from "payload/dist/collections/config/types";
+import {
+  CollectionConfig,
+  SanitizedCollectionConfig,
+} from "payload/dist/collections/config/types";
 import {
   GetAdminThumbnail,
   IncomingUploadType,
@@ -21,6 +26,10 @@ import { UploadApiResponse } from "cloudinary";
 import { RequestContext } from "payload";
 describe("cloudinaryPlugin", () => {
   let plugin: Plugin;
+  const baseConfig = {
+    db: mongooseAdapter({ url: "" }),
+    editor: slateEditor({}),
+  } as Config;
   const defaultFieldsAsJson = JSON.stringify([
     "format",
     "original_filename",
@@ -33,10 +42,12 @@ describe("cloudinaryPlugin", () => {
     plugin = cloudinaryPlugin();
   });
   it("config with empty collections should not throw exception", () => {
-    expect(async () => await plugin({})).not.toThrowError();
+    expect(async () => await plugin({} as Config)).not.toThrowError();
   });
   it("config with no 'upload' collection, should return same", async () => {
     const config = await plugin({
+      editor: slateEditor({}),
+      db: mongooseAdapter({ url: "" }),
       collections: [{ slug: "sample-collection", fields: [] }],
     });
     const collection = config.collections
@@ -47,6 +58,7 @@ describe("cloudinaryPlugin", () => {
   });
   it("config with 'upload' collection should return modified collection", async () => {
     const config = await plugin({
+      ...baseConfig,
       collections: [
         {
           slug: "sample-collection",
@@ -65,6 +77,7 @@ describe("cloudinaryPlugin", () => {
   });
   it("config with 'upload' collection with 'hooks' should return modified collection", async () => {
     const config = await plugin({
+      ...baseConfig,
       collections: [
         {
           slug: "sample-collection",
@@ -123,6 +136,7 @@ describe("cloudinaryPlugin", () => {
       cloudinaryFields: ["my-custom-field"],
     });
     const config = await enrichedPlugin({
+      ...baseConfig,
       collections: [
         {
           slug: "sample-collection",
@@ -205,6 +219,7 @@ describe("cloudinaryPlugin", () => {
       it("should return undefined for invalid inputs", async () => {
         expect(
           await beforeChangeHook({
+            collection: {} as SanitizedCollectionConfig,
             req: {} as PayloadRequest<any>,
             data: {} as Partial<any>,
             operation: "create",
@@ -213,6 +228,7 @@ describe("cloudinaryPlugin", () => {
         ).toBeUndefined();
         expect(
           await beforeChangeHook({
+            collection: {} as SanitizedCollectionConfig,
             req: { files: {} as unknown } as PayloadRequest<any>,
             data: { filename: null } as Partial<any>,
             operation: "create",
@@ -221,6 +237,7 @@ describe("cloudinaryPlugin", () => {
         ).toBeUndefined();
         expect(
           await beforeChangeHook({
+            collection: {} as SanitizedCollectionConfig,
             req: {
               files: { file: "sample-file.jpg" } as unknown,
             } as PayloadRequest<any>,
@@ -231,6 +248,7 @@ describe("cloudinaryPlugin", () => {
         ).toBeUndefined();
         expect(
           await beforeChangeHook({
+            collection: {} as SanitizedCollectionConfig,
             req: {
               files: { file: "sample-file.jpg" } as unknown,
             } as PayloadRequest<any>,
@@ -243,18 +261,24 @@ describe("cloudinaryPlugin", () => {
       it("should execute 'upload' method", async () => {
         const cloudinaryService = new CloudinaryService();
         await beforeChangeHook({
+          collection: {} as SanitizedCollectionConfig,
           req: {
             cloudinaryService,
             files: {
               file: Buffer.from("sample"),
             } as unknown,
-            collection: { config: plugin({}) },
+            collection: {
+              config: plugin({
+                ...baseConfig,
+              }),
+            },
           } as CloudinaryPluginRequest,
           data: { filename: "sample-file.png" } as Partial<any>,
           operation: "create",
           context: reqContext,
         });
         await beforeChangeHook({
+          collection: {} as SanitizedCollectionConfig,
           req: {
             cloudinaryService,
             files: {
@@ -272,6 +296,7 @@ describe("cloudinaryPlugin", () => {
       it("should return undefined for invalid inputs", async () => {
         expect(
           await afterDeleteHook({
+            collection: {} as SanitizedCollectionConfig,
             req: {} as PayloadRequest<any>,
             doc: {} as any,
             id: "sample-id",
@@ -284,6 +309,7 @@ describe("cloudinaryPlugin", () => {
         const doc = {};
         doc[GROUP_NAME] = { public_id: "sample-public-id" };
         await afterDeleteHook({
+          collection: {} as SanitizedCollectionConfig,
           req: {
             cloudinaryService,
           } as CloudinaryPluginRequest,
@@ -305,6 +331,7 @@ describe("cloudinaryPlugin", () => {
           public_id: "sample-public-id",
         };
         const result = afterReadHook({
+          collection: {} as SanitizedCollectionConfig,
           doc: doc,
           req: {} as any,
           context: reqContext,
