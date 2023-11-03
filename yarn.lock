@@ -2148,9 +2148,9 @@
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
 "@types/node@*":
-  version "20.8.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.8.9.tgz#646390b4fab269abce59c308fc286dcd818a2b08"
-  integrity sha512-UzykFsT3FhHb1h7yD4CA4YhBHq545JC0YnEz41xkipN88eKQtL6rSgocL5tbAP6Ola9Izm/Aw4Ora8He4x0BHg==
+  version "20.8.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.8.10.tgz#a5448b895c753ae929c26ce85cab557c6d4a365e"
+  integrity sha512-TlgT8JntpcbmKUFzjhsyhGfP2fsiz1Mv56im6enJ905xG1DAYesxJaeSbGqQmAw8OWPdhyJGhGSQGKRNJ45u9w==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2177,9 +2177,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.2.33"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.33.tgz#055356243dc4350a9ee6c6a2c07c5cae12e38877"
-  integrity sha512-v+I7S+hu3PIBoVkKGpSYYpiBT1ijqEzWpzQD62/jm4K74hPpSP7FF9BnKG6+fg2+62weJYkkBWDJlZt5JO/9hg==
+  version "18.2.34"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.34.tgz#aed20f19473721ba328feb99d1ec3307ebc1a8dd"
+  integrity sha512-U6eW/alrRk37FU/MS2RYMjx0Va2JGIVXELTODaTIYgvWGCV4Y4TfTUzG8DdmpDNIT0Xpj/R7GfyHOJJrDttcvg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -6111,9 +6111,9 @@ pause@0.0.1:
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
 payload@^2.0.0:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.0.14.tgz#a5f2431ce1293a0764ceb34afeed5b490f93f0df"
-  integrity sha512-pXQcX9T2dtR9h5enHqIn/kt384eNPe0nZVBS/wUnYW1LXW/5f74Esi2CsNZHV6TTyAElw9EheRRiESJ37WwHTQ==
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.0.15.tgz#7e0a4528bf3b9cf0e0317e77f47e7a71580be1bb"
+  integrity sha512-P+FEMr79y5FQJ6NJm7KhQZqmEvU3BXkGZT7Kbj5MCeCpbP0TlboAMWThdzr9jaGgHK2Y5uGRMCzeW0880mnKZg==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"
@@ -7436,9 +7436,9 @@ terser-webpack-plugin@5.3.9:
     terser "^5.16.8"
 
 terser@^5.10.0, terser@^5.16.8:
-  version "5.23.0"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.23.0.tgz#a9c02bc3087d0f5b1cc63bbfb4fe0f7e5dbbde82"
-  integrity sha512-Iyy83LN0uX9ZZLCX4Qbu5JiHiWjOCTwrmM9InWOzVeM++KNWEsqV4YgN9U9E8AlohQ6Gs42ztczlWOG/lwDAMA==
+  version "5.24.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.24.0.tgz#4ae50302977bca4831ccc7b4fef63a3c04228364"
+  integrity sha512-ZpGR4Hy3+wBEzVEnHvstMvqpD/nABNelQn/z2r0fjVWGQsN3bpOLzQlqDxmb4CDZnXq5lpjnQ+mHQLAOpfM5iw==
   dependencies:
     "@jridgewell/source-map" "^0.3.3"
     acorn "^8.8.2"
@@ -7668,9 +7668,9 @@ undici-types@~5.26.4:
   integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
 
 universalify@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
-  integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
+  integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
