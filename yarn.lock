@@ -2028,9 +2028,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.2.38"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.38.tgz#3605ca41d3daff2c434e0b98d79a2469d4c2dd52"
-  integrity sha512-cBBXHzuPtQK6wNthuVMV6IjHAFkdl/FOPFIlkd81/Cd1+IqkHu/A+w4g43kaQQoYHik/ruaQBDL72HyCy1vuMw==
+  version "18.2.39"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.39.tgz#744bee99e053ad61fe74eb8b897f3ab5b19a7e25"
+  integrity sha512-Oiw+ppED6IremMInLV4HXGbfbG6GyziY3kqAwJYOR0PNbkYDmLWQA3a95EhdSmamsvbkJN96ZNN+YD+fGjzSBA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -5879,9 +5879,9 @@ pause@0.0.1:
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
 payload@^2.0.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.2.1.tgz#8e2d4c882490f5ce90b9f04c7be7748b71cf87cb"
-  integrity sha512-0NGVxycVz5xZs7+0l9Qiw+6+pYNmoRI7nn7BRhq4r+ryjJRnzCb/eIEO+wukb3/UTihHHK5anvkl2aJNLgiICA==
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.2.2.tgz#0c31628cbae30a704dd893c3827592beaa200d78"
+  integrity sha512-Bc8adkLKYet28ywAydKLALbw3HFL/qeqj4oCY+z1Bp179XpCMGyNhhW12fdozi9UKySNV4BkiULc1U+aMOL8eQ==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"
