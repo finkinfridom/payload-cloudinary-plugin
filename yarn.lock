@@ -5890,9 +5890,9 @@ pause@0.0.1:
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
 payload@^2.0.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.4.0.tgz#bb443560bccee7ea5e0695eb360b8520e4af62b8"
-  integrity sha512-o4TYlJvSYopgmX6S9TF0rcKj6A4Mv9Phhxw0fkWMb414Iz41SqqGMhHNTVVYpXuZ66mmZigTA6SoT6C1cTwcMw==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.5.0.tgz#42bf5bf3165bfc73373b9ac046b990303f5da4d4"
+  integrity sha512-OQRpRsQJhrQZ9EKsTCpcL9a9rxpNIEj2CvCDn8QEozx+rD0cUZmOmwIeK5HilXVqvjO9v70kllO5Jtr8QNMjSA==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"
@@ -6463,9 +6463,9 @@ readable-stream@^3.1.1, readable-stream@^3.4.0, readable-stream@^3.6.0:
     util-deprecate "^1.0.1"
 
 readable-stream@^4.0.0:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-4.4.2.tgz#e6aced27ad3b9d726d8308515b9a1b98dc1b9d13"
-  integrity sha512-Lk/fICSyIhodxy1IDK2HazkeGjSmezAWX2egdtJnYhtzKEsBPJowlI6F6LPb5tqIQILrMbx22S5o3GuJavPusA==
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-4.5.1.tgz#3f2e4e66eab45606ac8f31597b9edb80c13b12ab"
+  integrity sha512-uQjbf34vmf/asGnOHQEw07Q4llgMACQZTWWa4MmICS0IKJoHbLwKCy71H3eR99Dw5iYejc6W+pqZZEeqRtUFAw==
   dependencies:
     abort-controller "^3.0.0"
     buffer "^6.0.3"
