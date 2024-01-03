@@ -12,9 +12,7 @@ Extends `payloadcms` with Cloudinary integration
 
 [![GitHub Super-Linter](https://github.com/finkinfridom/payload-cloudinary-plugin/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/finkinfridom/payload-cloudinary-plugin/actions/workflows/linter.yml)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/320b671855ce462d9c21b3769486c256)](https://www.codacy.com/gh/finkinfridom/payload-cloudinary-plugin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=finkinfridom/payload-cloudinary-plugin&amp;utm_campaign=Badge_Grade)
-
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/320b671855ce462d9c21b3769486c256)](https://www.codacy.com/gh/finkinfridom/payload-cloudinary-plugin/dashboard?utm_source=github.com&utm_medium=referral&utm_content=finkinfridom/payload-cloudinary-plugin&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/320b671855ce462d9c21b3769486c256)](https://app.codacy.com/gh/finkinfridom/payload-cloudinary-plugin/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 ## Install
 
