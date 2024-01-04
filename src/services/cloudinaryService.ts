@@ -40,21 +40,15 @@ export class CloudinaryService {
     };
 
     cloudinary.config(_cfg);
-    const {
-      staticDir = "__tmp_media__",
-      staticURL = "/media",
-      disableLocalStorage = false,
-    } = collectionConfig?.upload || {};
+    const { staticDir = "__tmp_media__", staticURL = "/media" } =
+      collectionConfig?.upload || {};
     const staticPath = path.resolve(payload.config.paths.configDir, staticDir);
-    let tmpFileName = path.join(staticPath, filename);
-    if (disableLocalStorage) {
-      await fs.promises.mkdir(staticPath, { recursive: true });
-      tmpFileName = path.join(
-        staticPath,
-        `${new Date().getTime()}_${filename}`
-      );
-      await fs.promises.writeFile(tmpFileName, buffer);
-    }
+    await fs.promises.mkdir(staticPath, { recursive: true });
+    const tmpFileName = path.join(
+      staticPath,
+      `${new Date().getTime()}_${filename}`
+    );
+    await fs.promises.writeFile(tmpFileName, buffer);
     const _opts = {
       ...this.options,
       folder: this.options?.folder || staticURL,
@@ -69,9 +63,7 @@ export class CloudinaryService {
       ..._opts,
       resource_type: _resourceType,
     });
-    if (disableLocalStorage) {
-      await fs.promises.rm(tmpFileName);
-    }
+    await fs.promises.rm(tmpFileName);
     return uploadPromise;
   }
   async delete(
