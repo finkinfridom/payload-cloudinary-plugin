@@ -2822,13 +2822,12 @@ cloudinary-core@^2.13.0:
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.13.0.tgz#b59f90871b6c708c3d0735b9be47ac08181c57fb"
   integrity sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==
 
-cloudinary@^1.32.0:
-  version "1.41.3"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.41.3.tgz#dc96725122099349adba6ab4eccda84fa13e8c2e"
-  integrity sha512-4o84y+E7dbif3lMns+p3UW6w6hLHEifbX/7zBJvaih1E9QNMZITENQ14GPYJC4JmhygYXsuuBb9bRA3xWEoOfg==
+cloudinary@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.0.0.tgz#db0dfa1f749bc0ddda1511b68b61533b21137504"
+  integrity sha512-NUbufckg2GiuJjB0DVGFBRNLt4jl+2nOA1KeZv1ub8FCduNFvkcdGF1t9JKeoVVM8Po9wYvjICcecMsjQVq1Jw==
   dependencies:
     cloudinary-core "^2.13.0"
-    core-js "^3.30.1"
     lodash "^4.17.21"
     q "^1.5.1"
 
@@ -2996,11 +2995,6 @@ cookie@0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
   integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
-
-core-js@^3.30.1:
-  version "3.35.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.35.1.tgz#9c28f8b7ccee482796f8590cc8d15739eaaf980c"
-  integrity sha512-IgdsbxNyMskrTFxa9lWHyMwAJU5gXOPP+1yO+K59d50VLVAIDAbs7gIv705KzALModfK3ZrSZTPNpC0PQgIZuw==
 
 cosmiconfig@^7.0.0:
   version "7.1.0"
