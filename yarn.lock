@@ -2866,9 +2866,9 @@ cliui@^8.0.1:
     wrap-ansi "^7.0.0"
 
 cloudinary@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.0.1.tgz#9100330cd085539fe2a8131f1d63a77af1e4e2fd"
-  integrity sha512-+j5GswtCwjAmLhjs/K26id4Zvh53zL/YWzgyenxgbdXdXmdFM8d5H1FV1sJCkpS77AqylJKBzyztySdILM+F+A==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.0.2.tgz#a99a40412aa5cf877533fdba2f917592770632ac"
+  integrity sha512-PQOaoM5W0jSrI1EIcnKAHenT3IMCCTbLkSWlXkXzQlkLBxsJIerinZVWebQqqpwz4etdhvlkfaXmsE9yhYc0Qw==
   dependencies:
     lodash "^4.17.21"
     q "^1.5.1"
