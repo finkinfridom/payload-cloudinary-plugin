@@ -2045,9 +2045,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "18.2.78"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.78.tgz#94aec453d0ccca909998a2b4b2fd78af15a7d2fe"
-  integrity sha512-qOwdPnnitQY4xKlKayt42q5W5UQrSHjgoXNVEtxeqdITJ99k4VXJOP3vt8Rkm9HmgJpH50UNU+rlqfkfWOqp0A==
+  version "18.2.79"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.79.tgz#c40efb4f255711f554d47b449f796d1c7756d865"
+  integrity sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -5608,9 +5608,9 @@ no-case@^3.0.4:
     tslib "^2.0.3"
 
 node-abi@^3.3.0:
-  version "3.57.0"
-  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-3.57.0.tgz#d772cb899236c0aa46778d0d25256917cf15eb15"
-  integrity sha512-Dp+A9JWxRaKuHP35H77I4kCKesDy5HUDEmScia2FyncMTOXASMyg251F5PhFoDA5uqBrDDffiLpbqnrZmNXW+g==
+  version "3.60.0"
+  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-3.60.0.tgz#a325b13b3c401c2230202897559fbf0b5f9a90ac"
+  integrity sha512-zcGgwoXbzw9NczqbGzAWL/ToDYAxv1V8gL1D67ClbdkIfeeDBbY0GelZtC25ayLvVjr2q2cloHeQV1R0QAWqRQ==
   dependencies:
     semver "^7.3.5"
 
@@ -5921,9 +5921,9 @@ pause@0.0.1:
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
 payload@^2.0.0:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.12.1.tgz#5d02981ff8ae0631114cb5b2dc29b92ee65ac0a0"
-  integrity sha512-7RaOfCMM56coFMZW6DsN7bWdB7VdekphzMMmiyFvOEs5GWxvzES3rFjAYqP0udRTA2w1Vmh6vYsI8nfLgn8DAQ==
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.13.0.tgz#753fbb0ad5dd2cb68cd917762180cf5acc0f0ebc"
+  integrity sha512-/qxvfTmvE6SzdU9yWOF8gqe0p0OtARDkhVCfA4Zbwf2vQoIgmyh+BE6yWj5VD4mJBKAJEtCgB+Xb3ZFyogk10A==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"
