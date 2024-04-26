@@ -1383,14 +1383,13 @@
     uuid "9.0.0"
 
 "@payloadcms/richtext-slate@^1.0.7":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@payloadcms/richtext-slate/-/richtext-slate-1.5.0.tgz#b49fe566b3a658b5352ebb17c9ce64de2305be82"
-  integrity sha512-vyCx/r41NduoXd8hQ0EG2H6WtPNfXm5NWP3qkPaq5u5W/FF/tRpsTBMR/lGg0Bl1NEg2dxEc8j615p/qxMZa3g==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@payloadcms/richtext-slate/-/richtext-slate-1.5.1.tgz#0859932936958b290abc119cefbd9c82e8a54acc"
+  integrity sha512-dP4Vtn4nI5YS5G7XlL8y6aleS3659cDqqoT8X2340xBULXqAix5iAI+6ICjeZOj8Dyt70IW7UZ79BRchK02/Uw==
   dependencies:
     "@faceless-ui/modal" "2.0.1"
     i18next "22.5.1"
     is-hotkey "0.2.0"
-    react "18.2.0"
     react-i18next "11.18.6"
     slate "0.91.4"
     slate-history "0.86.0"
