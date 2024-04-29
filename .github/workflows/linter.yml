@@ -13,7 +13,7 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-
+permissions: read-all
 ###############
 # Set the Job #
 ###############
@@ -42,7 +42,7 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: github/super-linter/slim@v5
+        uses: github/super-linter/slim@v6
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
@@ -50,5 +50,4 @@ jobs:
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
           TYPESCRIPT_DEFAULT_STYLE: prettier
           VALIDATE_JSCPD: false
-          USE_FIND_ALGORITHM: true
           LINTER_RULES_PATH: /
