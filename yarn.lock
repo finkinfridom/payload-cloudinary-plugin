@@ -5923,9 +5923,9 @@ pause@0.0.1:
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
 payload@^2.0.0:
-  version "2.22.1"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.22.1.tgz#c1a162a15fd5a71f340e411db77115ea92f44e0f"
-  integrity sha512-8H9H7MGKpYxcQ+o/E2ne8hfPQHn6CRxvF/96USLHrTyv3vk+cDb0ly3hrj4ucRbNLbsyBp+ApXu3Sl0AF9UjGg==
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.22.2.tgz#6ba06c15afeed9306ff557763ba396ba7d99a4c1"
+  integrity sha512-0HD3WFGmEveFitU7IuspuTuSJEbSW5LdFVWfn/eObMhRUzUvF0o7wCYBGPfAM1TkFx1/V2HRwlsYhGVlXnvD+w==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"
