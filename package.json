@@ -23,13 +23,13 @@
     "node": ">=8.3.0"
   },
   "dependencies": {
-    "cloudinary": "^2.3.0",
+    "cloudinary": "^2.3.1",
     "dotenv": "^16.0.0",
-    "payload": "^2.24.1"
+    "payload": "^2.24.2"
   },
   "devDependencies": {
-    "@types/node": "^20.14.11",
-    "@payloadcms/db-mongodb": "^1.6.0",
+    "@types/node": "^20.14.12",
+    "@payloadcms/db-mongodb": "^1.7.0",
     "@payloadcms/richtext-slate": "^1.0.7",
     "@types/jest": "29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.17.0",

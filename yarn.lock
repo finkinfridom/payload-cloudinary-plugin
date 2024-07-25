@@ -1351,10 +1351,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@payloadcms/db-mongodb@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@payloadcms/db-mongodb/-/db-mongodb-1.6.0.tgz#bac0d3d8aaeefcac9c2929f97b295aa0390392d9"
-  integrity sha512-4a2pMeLudCCszb3asbTZlX0c3KWT8h+znd8CxH3XpBL5aYWeNhyRGm2URPv+RQS9uOwLfCgkYSW8f+uD1CT0Kg==
+"@payloadcms/db-mongodb@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@payloadcms/db-mongodb/-/db-mongodb-1.7.0.tgz#01c4010592e3c5100cdc9192f6d594c34e362c13"
+  integrity sha512-2phbqQrxDulWRqhXDYUucI9e6w/RD4D4BcPYLDs8yyCD9mst4KyFInI3ZSo2Q5HCmmL4FPffJrdZcKKgGctBOA==
   dependencies:
     bson-objectid "2.0.4"
     deepmerge "4.3.1"
@@ -2026,10 +2026,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-5.1.2.tgz#07508b45797cb81ec3f273011b054cd0755eddca"
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
-"@types/node@*", "@types/node@^20.14.11":
-  version "20.14.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.11.tgz#09b300423343460455043ddd4d0ded6ac579b74b"
-  integrity sha512-kprQpL8MMeszbz6ojB5/tU8PLN4kesnN8Gjzw349rDlNgsSzg90lAVj3llK99Dh7JON+t9AuscPPFW6mPbTnSA==
+"@types/node@*", "@types/node@^20.14.12":
+  version "20.14.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.14.12.tgz#129d7c3a822cb49fc7ff661235f19cfefd422b49"
+  integrity sha512-r7wNXakLeSsGT0H1AU863vS2wa5wBOK4bWMjZz2wj+8nBx+m5PeIn0k8AloSLpRuiwdRQZwarZqHE4FNArPuJQ==
   dependencies:
     undici-types "~5.26.4"
 
@@ -2852,10 +2852,10 @@ cliui@^8.0.1:
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
 
-cloudinary@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.3.0.tgz#48d74ea574cddb8a69e84b9bef03ed68401004b2"
-  integrity sha512-QBa/ePVVfVcVOB1Vut236rjAbTZAArzOm0e2IWUkQJSZFS65Sjf+i3DyRGen4QX8GZzrcbzvKI9b8BTHAv1zqQ==
+cloudinary@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.3.1.tgz#0ba04ac32d9afeec73327941f0474881ffa8c8f5"
+  integrity sha512-DW63pfRhN6Ob9czyLSG8G3Vz+m1tijLYyTZMOuFpFWPwtVXZVdFrc2ggDtGrbIBYpvr94tjPOkOdWgYW2ae3rA==
   dependencies:
     lodash "^4.17.21"
     q "^1.5.1"
@@ -5950,10 +5950,10 @@ pause@0.0.1:
   resolved "https://registry.yarnpkg.com/pause/-/pause-0.0.1.tgz#1d408b3fdb76923b9543d96fb4c9dfd535d9cb5d"
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
-payload@^2.24.1:
-  version "2.24.1"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-2.24.1.tgz#722049b74aec5e53291f1836e8068a0b8c58a4f4"
-  integrity sha512-3jLYbMaKREzKQEVy5asRnLgcU/5izgTcemvGHxzPG/FFfMlH3BlniPWfL8oKSgonV/9izdJeVrlZIXif9SoE4w==
+payload@^2.24.2:
+  version "2.24.2"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-2.24.2.tgz#743493c8ab90d9adfc31f92562d50feb741936c9"
+  integrity sha512-kN+p//9kmtWnBq45ymvHNgsz3uhOiqhU4+sVkH1x1pRuevVctuRzuTuBEoVY2oPIJpbXW7CRogy0oLnXj6GASg==
   dependencies:
     "@date-io/date-fns" "2.16.0"
     "@dnd-kit/core" "6.0.8"
