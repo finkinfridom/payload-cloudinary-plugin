@@ -1,16 +1,18 @@
+import { describe, expect } from "@jest/globals";
+
 import {
   CloudinaryService,
   mediaManagement,
 } from "../src/services/cloudinaryService";
-import payload from "payload";
-import { buildConfig } from "payload/dist/config/build";
+import payload, { buildConfig } from "payload";
 import path from "path";
 import fs from "fs";
-import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
-import { CloudinaryPluginRequest } from "../src";
+import type { UploadApiResponse } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+import type { CloudinaryPluginRequest } from "../src";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
-import { Config } from "payload/config";
+import type { Config } from "payload";
 jest.mock("cloudinary");
 jest.mock("payload");
 const staticDir = "__tmp_media__";

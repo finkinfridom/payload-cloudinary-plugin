@@ -1,8 +1,14 @@
-import { FieldBase, GroupField } from "payload/dist/fields/config/types";
-import { PayloadRequest } from "payload/types";
+import { describe, expect } from "@jest/globals";
+import type { FieldBase, GroupField } from "payload/dist/fields/config/types";
+import type {
+  PayloadRequest,
+  Config,
+  Plugin,
+  UploadConfig,
+  RequestContext,
+} from "payload";
 import cloudinaryPlugin from "../src/plugins";
-import { Config, Plugin } from "payload/config";
-import { CloudinaryPluginRequest } from "../src";
+import type { CloudinaryPluginRequest } from "../src";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { slateEditor } from "@payloadcms/richtext-slate";
 import {
@@ -14,16 +20,13 @@ import {
   mapRequiredFields,
 } from "../src/plugins/cloudinaryPlugin";
 import { CloudinaryService } from "../src/services/cloudinaryService";
-import {
+import type {
   CollectionConfig,
   SanitizedCollectionConfig,
 } from "payload/dist/collections/config/types";
-import {
-  GetAdminThumbnail,
-  IncomingUploadType,
-} from "payload/dist/uploads/types";
-import { UploadApiResponse } from "cloudinary";
-import { RequestContext } from "payload";
+import type { GetAdminThumbnail } from "payload/dist/uploads/types";
+import type { UploadApiResponse } from "cloudinary";
+
 describe("cloudinaryPlugin", () => {
   let plugin: Plugin;
   const baseConfig = {
@@ -49,6 +52,7 @@ describe("cloudinaryPlugin", () => {
       editor: slateEditor({}),
       db: mongooseAdapter({ url: "" }),
       collections: [{ slug: "sample-collection", fields: [] }],
+      secret: "test-secret",
     });
     const collection = config.collections
       ? config.collections[0]
@@ -109,7 +113,7 @@ describe("cloudinaryPlugin", () => {
     expect(collection.hooks?.beforeChange).toHaveLength(2);
     expect(collection.hooks?.afterRead).toHaveLength(2);
     expect(collection.hooks?.afterDelete).toHaveLength(2);
-    const adminThumbnail = (collection.upload as IncomingUploadType)
+    const adminThumbnail = (collection.upload as UploadConfig)
       .adminThumbnail as GetAdminThumbnail;
     expect(adminThumbnail).not.toBeUndefined();
     if (adminThumbnail) {
@@ -220,7 +224,7 @@ describe("cloudinaryPlugin", () => {
         expect(
           await beforeChangeHook({
             collection: {} as SanitizedCollectionConfig,
-            req: {} as PayloadRequest<any>,
+            req: {} as PayloadRequest,
             data: {} as Partial<any>,
             operation: "create",
             context: reqContext,
@@ -229,7 +233,7 @@ describe("cloudinaryPlugin", () => {
         expect(
           await beforeChangeHook({
             collection: {} as SanitizedCollectionConfig,
-            req: { files: {} as unknown } as PayloadRequest<any>,
+            req: { file: {} as unknown } as PayloadRequest,
             data: { filename: null } as Partial<any>,
             operation: "create",
             context: reqContext,
@@ -239,8 +243,8 @@ describe("cloudinaryPlugin", () => {
           await beforeChangeHook({
             collection: {} as SanitizedCollectionConfig,
             req: {
-              files: { file: "sample-file.jpg" } as unknown,
-            } as PayloadRequest<any>,
+              file: { name: "sample-file.jpg" } as unknown,
+            } as PayloadRequest,
             data: null as unknown as Partial<any>,
             operation: "create",
             context: reqContext,
@@ -250,8 +254,8 @@ describe("cloudinaryPlugin", () => {
           await beforeChangeHook({
             collection: {} as SanitizedCollectionConfig,
             req: {
-              files: { file: "sample-file.jpg" } as unknown,
-            } as PayloadRequest<any>,
+              file: { name: "sample-file.jpg" },
+            } as PayloadRequest,
             data: { filename: null } as Partial<any>,
             operation: "create",
             context: reqContext,
@@ -264,15 +268,12 @@ describe("cloudinaryPlugin", () => {
           collection: {} as SanitizedCollectionConfig,
           req: {
             cloudinaryService,
-            files: {
-              file: Buffer.from("sample"),
-            } as unknown,
-            collection: {
-              config: plugin({
-                ...baseConfig,
-              }),
-            },
-          } as CloudinaryPluginRequest,
+            file: { data: Buffer.from("sample") } as unknown,
+            collection: plugin({
+              ...baseConfig,
+            }),
+            context: reqContext,
+          } as Partial<CloudinaryPluginRequest>,
           data: { filename: "sample-file.png" } as Partial<any>,
           operation: "create",
           context: reqContext,
@@ -281,9 +282,7 @@ describe("cloudinaryPlugin", () => {
           collection: {} as SanitizedCollectionConfig,
           req: {
             cloudinaryService,
-            files: {
-              file: Buffer.from("sample"),
-            } as unknown,
+            file: { data: Buffer.from("sample") },
           } as CloudinaryPluginRequest,
           data: { filename: "sample-file.png" } as Partial<any>,
           operation: "create",
@@ -297,7 +296,7 @@ describe("cloudinaryPlugin", () => {
         expect(
           await afterDeleteHook({
             collection: {} as SanitizedCollectionConfig,
-            req: {} as PayloadRequest<any>,
+            req: {} as PayloadRequest,
             doc: {} as any,
             id: "sample-id",
             context: reqContext,

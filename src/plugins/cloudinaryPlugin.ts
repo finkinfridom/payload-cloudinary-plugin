@@ -1,14 +1,11 @@
 import { UploadApiResponse } from "cloudinary";
-import { Config, Plugin } from "payload/config";
-import { FieldBase } from "payload/dist/fields/config/types";
-import { IncomingUploadType } from "payload/dist/uploads/types";
-import { APIError } from "payload/errors";
-import {
-  Field,
-  CollectionBeforeChangeHook,
-  CollectionAfterDeleteHook,
-  CollectionAfterReadHook,
-} from "payload/types";
+import { Config, Plugin, APIError, UploadConfig } from "payload";
+import { Field, FieldBase } from "payload/dist/fields/config/types";
+import type {
+  BeforeChangeHook,
+  AfterDeleteHook,
+  AfterReadHook,
+} from "payload/dist/collections/config/types";
 
 import { CloudinaryPluginRequest, PluginConfig } from "../types";
 
@@ -60,8 +57,8 @@ export const mapRequiredFields = (
     )
     .map((name) => setCloudinaryField(name));
 };
-export const beforeChangeHook: CollectionBeforeChangeHook = async (args) => {
-  const file = args.req.files?.file;
+export const beforeChangeHook: BeforeChangeHook = async (args) => {
+  const file = args.req.file;
   if (!(file && args.data?.filename)) {
     return;
   }
@@ -72,7 +69,7 @@ export const beforeChangeHook: CollectionBeforeChangeHook = async (args) => {
       args.data.filename,
       file.data,
       args.req.payload,
-      args.req.collection?.config
+      args.collection
     );
     return {
       ...args.data,
@@ -83,10 +80,7 @@ export const beforeChangeHook: CollectionBeforeChangeHook = async (args) => {
   }
 };
 
-export const afterDeleteHook: CollectionAfterDeleteHook = async ({
-  req,
-  doc,
-}) => {
+export const afterDeleteHook: AfterDeleteHook = async ({ req, doc }) => {
   if (!doc[GROUP_NAME]) {
     return;
   }
@@ -102,7 +96,7 @@ export const afterDeleteHook: CollectionAfterDeleteHook = async ({
     throw new APIError(`Cloudinary: ${JSON.stringify(e)}`);
   }
 };
-export const afterReadHook: CollectionAfterReadHook = ({ doc }) => {
+export const afterReadHook: AfterReadHook = ({ doc }) => {
   const newDoc = {
     ...doc,
     original_doc: {
@@ -146,7 +140,7 @@ const cloudinaryPlugin = (pluginConfig?: PluginConfig) => {
             },
           ],
           upload: {
-            ...(collection.upload as IncomingUploadType),
+            ...(collection.upload as UploadConfig),
             adminThumbnail: ({ doc }) => {
               return (doc[GROUP_NAME] as UploadApiResponse)?.secure_url;
             },

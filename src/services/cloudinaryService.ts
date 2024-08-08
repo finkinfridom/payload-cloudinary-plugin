@@ -1,18 +1,18 @@
-import {
+import type {
   ConfigOptions,
   DeliveryType,
   ResourceType,
   UploadApiOptions,
   UploadApiResponse,
-  v2 as cloudinary,
 } from "cloudinary";
-import { Payload } from "payload";
-import { SanitizedCollectionConfig } from "payload/types";
+import { v2 as cloudinary } from "cloudinary";
+import type { Payload } from "payload";
+import type { SanitizedCollectionConfig } from "payload/dist/collections/config/types";
 
 import fs from "fs";
 import path from "path";
-import { CloudinaryPluginRequest } from "../types";
-
+import type { CloudinaryPluginRequest } from "../types";
+const FALLBACK_STATIC_URL = "/media";
 export class CloudinaryService {
   private config?: ConfigOptions;
   private options?: UploadApiOptions;
@@ -40,8 +40,8 @@ export class CloudinaryService {
     };
 
     cloudinary.config(_cfg);
-    const { staticDir = "__tmp_media__", staticURL = "/media" } =
-      collectionConfig?.upload || {};
+
+    const { staticDir = "__tmp_media__" } = collectionConfig?.upload || {};
     const staticPath = path.resolve(payload.config.paths.configDir, staticDir);
     await fs.promises.mkdir(staticPath, { recursive: true });
     const tmpFileName = path.join(
@@ -51,7 +51,7 @@ export class CloudinaryService {
     await fs.promises.writeFile(tmpFileName, buffer);
     const _opts = {
       ...this.options,
-      folder: this.options?.folder || staticURL,
+      folder: this.options?.folder || FALLBACK_STATIC_URL,
     };
     let _resourceType = this.options?.resource_type;
     if (!_resourceType) {
