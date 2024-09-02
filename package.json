@@ -28,7 +28,7 @@
     "payload": "^2.27.0"
   },
   "devDependencies": {
-    "@types/node": "^22.5.1",
+    "@types/node": "^22.5.2",
     "@payloadcms/db-mongodb": "^1.7.2",
     "@payloadcms/richtext-slate": "^1.0.7",
     "@types/jest": "29.5.12",
