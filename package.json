@@ -25,16 +25,16 @@
   "dependencies": {
     "cloudinary": "^2.4.0",
     "dotenv": "^16.0.0",
-    "payload": "^2.27.0"
+    "payload": "^2.28.0"
   },
   "devDependencies": {
-    "@types/node": "^22.5.1",
+    "@types/node": "^22.5.4",
     "@payloadcms/db-mongodb": "^1.7.2",
     "@payloadcms/richtext-slate": "^1.0.7",
     "@types/jest": "29.5.12",
-    "@typescript-eslint/eslint-plugin": "^8.3.0",
-    "@typescript-eslint/parser": "^8.3.0",
-    "eslint": "^9.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
+    "eslint": "^9.10.0",
     "jest": "29.7.0",
     "serve": "^14.0.1",
     "ts-jest": "29.2.5",
