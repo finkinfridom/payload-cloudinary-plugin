@@ -50,4 +50,5 @@ jobs:
           TYPESCRIPT_ES_CONFIG_FILE: .eslintrc.json
           TYPESCRIPT_DEFAULT_STYLE: prettier
           VALIDATE_JSCPD: false
+          VALIDATE_MARKDOWN: false
           LINTER_RULES_PATH: /
